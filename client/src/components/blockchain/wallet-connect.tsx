@@ -44,13 +44,14 @@ export default function WalletConnect() {
         </Button>
       ) : (
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="flex items-center gap-2">
+          <Button variant="outline" size="sm" className="flex items-center gap-2 bg-primary/10 text-primary border-primary/20">
             <Wallet className="h-4 w-4" />
             {address}
           </Button>
           <Button
             variant="ghost"
             size="icon"
+            className="hover:bg-primary/10 hover:text-primary"
             onClick={() => window.open(`https://etherscan.io/address/${address}`, '_blank')}
           >
             <ExternalLink className="h-4 w-4" />

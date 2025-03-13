@@ -13,6 +13,8 @@ import FixedPrice from "@/pages/fixed-price";
 import Celebrities from "@/pages/celebrities";
 import CelebrityDetail from "@/pages/celebrity/[id]";
 import ItemDetails from "@/pages/item-details";
+import Login from "@/pages/auth/login";
+import Signup from "@/pages/auth/signup";
 import FAQ from "@/pages/faq";
 import Shipping from "@/pages/shipping";
 import Authenticity from "@/pages/authenticity";
@@ -31,6 +33,8 @@ function Router() {
         <Route path="/celebrities" component={Celebrities} />
         <Route path="/celebrity/:id" component={CelebrityDetail} />
         <Route path="/item/:id" component={ItemDetails} />
+        <Route path="/auth/login" component={Login} />
+        <Route path="/auth/signup" component={Signup} />
         <Route path="/faq" component={FAQ} />
         <Route path="/shipping" component={Shipping} />
         <Route path="/authenticity" component={Authenticity} />
@@ -49,7 +53,7 @@ function App() {
       <CartProvider>
         <div className="min-h-screen bg-background text-foreground">
           <Navbar />
-          <main className="container mx-auto px-4">
+          <main>
             <Router />
           </main>
           <Footer />
