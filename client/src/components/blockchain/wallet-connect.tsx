@@ -3,19 +3,29 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/animations";
 import { Wallet, ExternalLink } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function WalletConnect() {
   const [isConnected, setIsConnected] = useState(false);
   const [address, setAddress] = useState("");
+  const { toast } = useToast();
 
   const connectWallet = async () => {
-    // This would integrate with actual wallet connection logic
     try {
       // Simulated connection
       setIsConnected(true);
       setAddress("0x1234...5678");
+      toast({
+        title: "Wallet Connected",
+        description: "Successfully connected to your wallet",
+      });
     } catch (error) {
       console.error("Failed to connect wallet:", error);
+      toast({
+        title: "Connection Failed",
+        description: "Failed to connect to wallet. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 

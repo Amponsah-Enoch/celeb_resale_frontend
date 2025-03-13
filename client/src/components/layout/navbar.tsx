@@ -3,9 +3,13 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag, User, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import WalletConnect from "@/components/blockchain/wallet-connect";
+import { useCart } from "@/lib/cart-context";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Navbar() {
   const [location] = useLocation();
+  const { items } = useCart();
+  const { toast } = useToast();
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -13,6 +17,20 @@ export default function Navbar() {
     { href: "/fixed-price", label: "Shop" },
     { href: "/celebrities", label: "Celebrities" }
   ];
+
+  const handleSearch = () => {
+    toast({
+      title: "Search",
+      description: "Search functionality coming soon!",
+    });
+  };
+
+  const handleProfile = () => {
+    toast({
+      title: "Profile",
+      description: "Profile functionality coming soon!",
+    });
+  };
 
   return (
     <motion.nav 
@@ -40,13 +58,18 @@ export default function Navbar() {
 
           <div className="flex items-center space-x-4">
             <WalletConnect />
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" onClick={handleSearch}>
               <Search className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className="relative">
               <ShoppingBag className="h-5 w-5" />
+              {items.length > 0 && (
+                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs flex items-center justify-center">
+                  {items.length}
+                </span>
+              )}
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" onClick={handleProfile}>
               <User className="h-5 w-5" />
             </Button>
           </div>

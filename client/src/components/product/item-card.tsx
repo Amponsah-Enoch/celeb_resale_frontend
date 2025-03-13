@@ -5,6 +5,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { fadeIn } from "@/lib/animations";
 import { Link } from "wouter";
+import { useCart } from "@/lib/cart-context";
 
 interface ItemCardProps {
   id: string;
@@ -29,6 +30,12 @@ export default function ItemCard({
   celebrity,
   charity
 }: ItemCardProps) {
+  const { addItem } = useCart();
+
+  const handleBuyNow = () => {
+    addItem({ id, title, price, image });
+  };
+
   return (
     <motion.div
       variants={fadeIn}
@@ -37,15 +44,13 @@ export default function ItemCard({
     >
       <Card className="h-full overflow-hidden">
         <Link href={`/item/${id}`}>
-          <a>
-            <div className="aspect-square overflow-hidden">
-              <img
-                src={image}
-                alt={title}
-                className="h-full w-full object-cover transition-transform hover:scale-105"
-              />
-            </div>
-          </a>
+          <div className="aspect-square overflow-hidden">
+            <img
+              src={image}
+              alt={title}
+              className="h-full w-full object-cover transition-transform hover:scale-105"
+            />
+          </div>
         </Link>
 
         <CardContent className="p-4">
@@ -71,7 +76,7 @@ export default function ItemCard({
         </CardContent>
 
         <CardFooter className="p-4 pt-0">
-          <Button className="w-full">
+          <Button className="w-full" onClick={handleBuyNow}>
             Buy Now
           </Button>
         </CardFooter>
