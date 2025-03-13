@@ -47,7 +47,7 @@ function Router() {
   );
 }
 
-function App() {
+export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
@@ -63,5 +63,3 @@ function App() {
     </QueryClientProvider>
   );
 }
-
-export default App;
