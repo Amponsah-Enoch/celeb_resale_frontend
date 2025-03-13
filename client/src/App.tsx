@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { motion, AnimatePresence } from "framer-motion";
 import { CartProvider } from "@/lib/cart-context";
+import { ErrorBoundary } from "@/components/error-boundary";
 
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
@@ -31,11 +32,35 @@ function Router() {
   return (
     <AnimatePresence mode="wait">
       <Switch>
-        {/* Admin Routes */}
-        <Route path="/admin" component={AdminDashboard} />
-        <Route path="/admin/products" component={AdminProducts} />
-        <Route path="/admin/celebrities" component={AdminCelebrities} />
-        <Route path="/admin/auctions" component={AdminAuctions} />
+        {/* Admin Routes - Wrapped in ErrorBoundary */}
+        <Route path="/admin">
+          {(params) => (
+            <ErrorBoundary>
+              <AdminDashboard />
+            </ErrorBoundary>
+          )}
+        </Route>
+        <Route path="/admin/products">
+          {(params) => (
+            <ErrorBoundary>
+              <AdminProducts />
+            </ErrorBoundary>
+          )}
+        </Route>
+        <Route path="/admin/celebrities">
+          {(params) => (
+            <ErrorBoundary>
+              <AdminCelebrities />
+            </ErrorBoundary>
+          )}
+        </Route>
+        <Route path="/admin/auctions">
+          {(params) => (
+            <ErrorBoundary>
+              <AdminAuctions />
+            </ErrorBoundary>
+          )}
+        </Route>
 
         {/* Auth Routes */}
         <Route path="/auth/login" component={Login} />
