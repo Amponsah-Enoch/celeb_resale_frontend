@@ -16,6 +16,9 @@ import ItemDetails from "@/pages/item-details";
 import Login from "@/pages/auth/login";
 import Signup from "@/pages/auth/signup";
 import AdminDashboard from "@/pages/admin/dashboard";
+import AdminProducts from "@/pages/admin/products";
+import AdminCelebrities from "@/pages/admin/celebrities";
+import AdminAuctions from "@/pages/admin/auctions";
 import FAQ from "@/pages/faq";
 import Shipping from "@/pages/shipping";
 import Authenticity from "@/pages/authenticity";
@@ -30,6 +33,9 @@ function Router() {
       <Switch>
         {/* Admin Routes */}
         <Route path="/admin" component={AdminDashboard} />
+        <Route path="/admin/products" component={AdminProducts} />
+        <Route path="/admin/celebrities" component={AdminCelebrities} />
+        <Route path="/admin/auctions" component={AdminAuctions} />
 
         {/* Auth Routes */}
         <Route path="/auth/login" component={Login} />
