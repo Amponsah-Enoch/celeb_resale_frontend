@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { fadeIn } from "@/lib/animations";
 import { Link } from "wouter";
+import SmartContract from "@/components/blockchain/smart-contract";
 
 interface AuctionCardProps {
   id: string;
@@ -28,8 +27,6 @@ export default function AuctionCard({
   endTime,
   celebrity
 }: AuctionCardProps) {
-  const [bidAmount, setBidAmount] = useState(currentBid + 100);
-
   const timeLeft = new Date(endTime).getTime() - new Date().getTime();
   const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
 
@@ -76,18 +73,7 @@ export default function AuctionCard({
               </span>
             </div>
 
-            <div className="flex gap-2">
-              <Input
-                type="number"
-                value={bidAmount}
-                onChange={(e) => setBidAmount(Number(e.target.value))}
-                min={currentBid + 100}
-                step={100}
-              />
-              <Button className="whitespace-nowrap">
-                Place Bid
-              </Button>
-            </div>
+            <SmartContract />
           </div>
         </CardContent>
       </Card>

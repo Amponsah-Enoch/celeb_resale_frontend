@@ -10,6 +10,7 @@ import Home from "@/pages/home";
 import Auctions from "@/pages/auctions";
 import FixedPrice from "@/pages/fixed-price";
 import Celebrities from "@/pages/celebrities";
+import CelebrityDetail from "@/pages/celebrity/[id]";
 import ItemDetails from "@/pages/item-details";
 import FAQ from "@/pages/faq";
 import Shipping from "@/pages/shipping";
@@ -27,6 +28,7 @@ function Router() {
         <Route path="/auctions" component={Auctions} />
         <Route path="/fixed-price" component={FixedPrice} />
         <Route path="/celebrities" component={Celebrities} />
+        <Route path="/celebrity/:id" component={CelebrityDetail} />
         <Route path="/item/:id" component={ItemDetails} />
         <Route path="/faq" component={FAQ} />
         <Route path="/shipping" component={Shipping} />
