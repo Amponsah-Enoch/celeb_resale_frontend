@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { fadeIn } from "@/lib/animations";
@@ -29,7 +29,7 @@ export default function AuctionCard({
   celebrity
 }: AuctionCardProps) {
   const [bidAmount, setBidAmount] = useState(currentBid + 100);
-  
+
   const timeLeft = new Date(endTime).getTime() - new Date().getTime();
   const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
 
@@ -60,11 +60,10 @@ export default function AuctionCard({
 
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Avatar
-              src={celebrity.image}
-              alt={celebrity.name}
-              className="h-6 w-6"
-            />
+            <Avatar className="h-6 w-6">
+              <AvatarImage src={celebrity.image} alt={celebrity.name} />
+              <AvatarFallback>{celebrity.name[0]}</AvatarFallback>
+            </Avatar>
             <span className="text-sm font-medium">{celebrity.name}</span>
           </div>
 
@@ -76,7 +75,7 @@ export default function AuctionCard({
                 ${currentBid.toLocaleString()}
               </span>
             </div>
-            
+
             <div className="flex gap-2">
               <Input
                 type="number"

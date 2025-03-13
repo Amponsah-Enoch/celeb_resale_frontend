@@ -4,7 +4,7 @@ import { pageTransition } from "@/lib/animations";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export default function ItemDetails() {
   const { id } = useParams();
@@ -56,11 +56,10 @@ export default function ItemDetails() {
             <div>
               <h1 className="text-3xl font-bold mb-4">{item.title}</h1>
               <div className="flex items-center gap-4 mb-6">
-                <Avatar
-                  src={item.celebrity.image}
-                  alt={item.celebrity.name}
-                  className="h-12 w-12"
-                />
+                <Avatar className="h-12 w-12">
+                  <AvatarImage src={item.celebrity.image} alt={item.celebrity.name} />
+                  <AvatarFallback>{item.celebrity.name[0]}</AvatarFallback>
+                </Avatar>
                 <div>
                   <p className="font-medium">{item.celebrity.name}</p>
                   <p className="text-sm text-muted-foreground">{item.celebrity.bio}</p>
